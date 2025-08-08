@@ -114,6 +114,11 @@ def create_app():
     def health():
         return jsonify({'status': 'ok'})
 
+    # Root endpoint for platform health checks (e.g., Railway defaults to "/")
+    @app.get('/')
+    def index():
+        return jsonify({'status': 'ok', 'service': 'audio-service'})
+
     @app.post('/generate')
     def generate():
         try:
